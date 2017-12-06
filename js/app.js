@@ -1,35 +1,54 @@
-//var firstList= document.getElementByid("firstTab");
-var inputList= document.createElement ("input");
-//inputList.setAtribute("type", "text");
-var card=document.createElement("tableros");
+window.addEventListener("load", function() {  //Se declara evento con la carga de la página y llama la funcion que se declara en el mismo evento. 
+	var noteOne = document.getElementById("firstAdd"); //Se declara variable para llamar al elemento con id "firstAdd"
+	var noteTwo = document.getElementById("note"); 
+	var btn = document.getElementById("btn");
+	var addInfo = document.getElementById("addInfo");
+	
 
-var nameList=document.createElement("h2");//titulo de la lista
-nameList.innerHTML=input.value;
-var nameList2=document.createElement("ul");//creando nuevo elemento de lista
-var listBotton=document.createElement("boton");// bonton para enviar
-crearlistBoton.className="botonEnviar";
-crearlistBoton.innerHTML="agregarTarea<br>";
-var inputTarea=document.createElement("input");
-var tag=document.createElement("etiqueta");
-tag.innerHTML="Tarea Nueva<br>";
-var edit=document.createElement("button");
+	noteOne.addEventListener("click", function(){ //Evento con función
+		mostrarInput();
 
-listBotton.addEventListener("submit", crearLista);
+		noteOne.style.display = "none";
+
+    });
+
+	btn.addEventListener("click", function(e) {
+		e.preventDefault();
+		addTittle(noteTwo, this);
+		addInfo.style.display = "none";
+		addDiv();
+	});
+
+	function mostrarInput(){
+		addInfo.style.display ="block";
+	}
+
+	function addTittle(noteTwo, noteOne){
+		var div = document.createElement("div");
+		var btn = document.createElement("button");
+
+		div.classList.add("nameList");
+		btn.classList.add("addCardInfo");
 
 
+		div.innerHTML = noteTwo.value;
+		btn.textContent = "Añadir una tarjeta...";
 
-crearListaBoton.onclick=function(){
-  var li=document.createElement("li");
-  var del=document.createElement("button");
-  del.className="borrar"
-  del.innerHTML="borrar tareas";
-}
+		var insertar = noteOne.parentElement.parentElement;
+		insertar.insertBefore(btn, insertar.childNodes[0]);
+		insertar.insertBefore(div, insertar.childNodes[0]);
+		noteTwo.value="";
+	}
 
-var inputList=document.createElement("input");
-edit.onclick=function(){
-  nameList.appendChild(inputList);
-  edit.ondbclick=function(){
-    nameList.innerHTML=inputList.value;
-    nameList.appendChild(edit);
-  }
-}
+	function addDiv(){   //Función para publicar el nuevo pin, su nombre y el nuevo campo.
+		var newNote = document.createElement("div");
+		board.appendChild(newNote);
+		newNote.classList.add("newNote");
+
+		newNote.insertBefore(noteOne, newNote.childNodes[0]);
+		newNote.insertBefore(addInfo, newNote.childNodes[1]);
+
+		noteOne.classList.add("addPin"); //Asigna la clase "addPin" al elemento. 
+		noteOne.style.display = "block";
+	}
+});
